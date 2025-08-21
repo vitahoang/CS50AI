@@ -1,0 +1,51 @@
+import unittest
+from tictactoe import initial_state, result, minimax, X, O, EMPTY
+
+class TestMinimax(unittest.TestCase):
+
+    def test_empty_board(self):
+        """
+        On an empty board, minimax should return a valid action (corner or center).
+        """
+        board = initial_state()
+        move = minimax(board)
+        self.assertIn(move, {(0, 0), (0, 2), (1, 1), (2, 0), (2, 2)})
+
+    def test_block_opponent_win(self):
+        """
+        If O is about to win, X should block.
+        """
+        board = [
+            [EMPTY, O, O],
+            [EMPTY, X, EMPTY],
+            [X, EMPTY, EMPTY]
+        ]
+        move = minimax(board)
+        self.assertEqual(move, (0, 0))  # X must block O's win
+
+    def test_win_in_one_move(self):
+        """
+        If X can win immediately, minimax should take the win.
+        """
+        board = [
+            [X, X, EMPTY],
+            [O, O, EMPTY],
+            [EMPTY, EMPTY, EMPTY]
+        ]
+        move = minimax(board)
+        self.assertEqual(move, (0, 2))  # X wins here
+
+    def test_terminal_board(self):
+        """
+        On a finished game, minimax should return None.
+        """
+        board = [
+            [X, O, X],
+            [O, X, O],
+            [O, X, O]
+        ]
+        self.assertIsNone(minimax(board))
+
+
+if __name__ == "__main__":
+    unittest.main()
