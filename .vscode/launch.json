@@ -1,0 +1,20 @@
+{
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Traffic",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/vitahoang/Code/CS50AI/traffic/traffic.py",
+            "args": ["./traffic/gtsrb/"],
+            "python": "/Users/vitahoang/Code/CS50AI/.venv/bin/python",
+            "cwd": "/Users/vitahoang/Code/CS50AI/"
+        },
+        {
+            "name": "Python Debugger: Python File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}"
+        }
+    ]
+}
